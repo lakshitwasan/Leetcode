@@ -90,7 +90,7 @@ int main()
         cout << "The Linked List does not have a cycle" << endl;
     }
 
-    bool ans2 = detectLoop(head);
+    bool ans2 = detectLoop2(head);
     if (ans2)
     {
         cout << "The Linked list has a cycle" << endl;
