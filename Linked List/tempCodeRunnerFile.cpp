@@ -1,3 +1,4 @@
 
-    head = insertNodeLocation(head, 1000, 6);
+    head = sortLL_0_1_2_variables(head);
+
     print(head);
