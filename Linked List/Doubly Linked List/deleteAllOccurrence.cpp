@@ -57,7 +57,7 @@ Node *deleteAllOccurences(Node *head, int k)
 
     if (head == NULL || head->next == NULL)
     {
-        return head;
+        return NULL;
     }
 
     Node *temp = head;
