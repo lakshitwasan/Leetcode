@@ -119,34 +119,10 @@ Node *deleteAtLocation_K(Node *head, int k)
         {
             return NULL;
         }
-
-        // Node *tempHead = head;
-        // head = head->next;
-        // head->back = nullptr;
-        // tempHead->next = nullptr;
-        // tempHead->back = nullptr;
-        // delete (tempHead);
-        // return head;
         return deletehead(head);
     }
     else if (nextNode == NULL)
     {
-        // if (head == NULL)
-        // {
-        //     return NULL;
-        // }
-        // Node *tempHead = head;
-
-        // while (tempHead->next->next != NULL)
-        // {
-        //     tempHead = tempHead->next;
-        // }
-        // Node *prevHead = tempHead;
-        // tempHead = tempHead->next;
-        // tempHead->back = nullptr;
-        // prevHead->next = nullptr;
-        // delete tempHead;
-        // return head;
 
         return deleteTail(head);
     }
