@@ -33,7 +33,7 @@ Node *arr2LL(vector<int> arr)
     for (int i = 1; i < arr.size(); i++)
     {
         Node *temp = new Node(arr[i]);
-        mover->next = temp;
+        mover->child = temp;
         mover = temp;
     }
 
@@ -46,14 +46,14 @@ void print(Node *head)
     while (temp)
     {
         cout << temp->data << " ";
-        temp = temp->next;
+        temp = temp->child;
     }
     cout << endl;
 }
 
 Node *flattenLL(Node *head)
 {
-    // TIME COMPLEXITY : O(MxNLOG(MxN))[M x N: WHILE ON TEMP, M x NLOG (M x N): SORTING, M x N : CONVERTING ARRAY TO LL] & SPACE COMPLEXITY : O(N)
+    // TIME COMPLEXITY : O(MxNLOG(MxN))[M x N: WHILE ON TEMP, M x NLOG (M x N): SORTING, M x N : CONVERTING ARRAY TO LL] & SPACE COMPLEXITY : O(2N) [ARRAY AND ONE SORTED LL]
 
     Node *temp = head;
     vector<int> arr;
@@ -76,6 +76,66 @@ Node *flattenLL(Node *head)
     return head;
 }
 
+Node *merge2lists(Node *t1, Node *t2)
+{
+
+    // TIME COPMEPLEXITY: O(N1 + N2) [LENGTH OF BOTH LISTS]
+
+    Node *dummyNode = new Node(-1);
+    Node *nextNode = dummyNode;
+
+    while (t1 && t2)
+    {
+        if (t1->data < t2->data)
+        {
+            nextNode->child = t1;
+            nextNode = nextNode->child;
+            t1 = t1->child;
+        }
+        else
+        {
+            nextNode->child = t2;
+            nextNode = nextNode->child;
+            t2 = t2->child;
+        }
+
+        nextNode->next = NULL;
+    }
+
+    if (t1)
+    {
+        nextNode->child = t1;
+    }
+    else
+    {
+        nextNode->child = t2;
+    }
+
+    if (dummyNode->child)
+    {
+        dummyNode->child->next = NULL;
+    }
+
+    return dummyNode->child;
+}
+
+Node *flattenLL_recursion(Node *head)
+{
+
+    // NOT WORKING COMPLETELY
+
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+
+    Node *mergeHead = flattenLL_recursion(head->next);
+
+    head = merge2lists(head, mergeHead);
+
+    return head;
+}
+
 int main()
 {
 
@@ -93,6 +153,7 @@ int main()
     head->next->next->next->child = new Node(17);
 
     head = flattenLL(head);
+    // head = flattenLL_recursion(head);
 
     print(head);
 
