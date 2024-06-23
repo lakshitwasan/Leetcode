@@ -2,19 +2,19 @@
 #include <vector>
 using namespace std;
 
-int lowerBound(vector<int> arr, int target)
+int upperBound(vector<int> arr, int target)
 {
     int n = arr.size();
 
     int low = 0;
     int high = n - 1;
-    int ans = -1;
+    int ans = n;
 
     while (low <= high)
     {
         int mid = (low + high) / 2;
 
-        if (arr[mid] >= target)
+        if (arr[mid] > target)
         {
             ans = mid;
             high = mid - 1;
@@ -24,16 +24,15 @@ int lowerBound(vector<int> arr, int target)
             low = mid + 1;
         }
     }
+
     return ans;
 }
 
 int main()
 {
-    vector<int> arr = {1, 2, 3, 4, 5, 6, 7, 9};
+    vector<int> arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    int target = 90;
-
-    int ans = lowerBound(arr, target);
+    int ans = upperBound(arr, 3);
 
     cout << ans;
 
