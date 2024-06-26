@@ -32,7 +32,7 @@ int sqRoot_BS(int n)
 {
     long long low = 1;
     long long high = n;
-    long long ans = 0;
+    // long long ans = 0;
 
     while (low <= high)
     {
@@ -40,7 +40,7 @@ int sqRoot_BS(int n)
 
         if (mid * mid <= (long long)(n))
         {
-            ans = mid;
+            // ans = mid;
             low = mid + 1;
         }
         else
@@ -49,7 +49,8 @@ int sqRoot_BS(int n)
         }
     }
 
-    return ans;
+    // return ans;
+    return high;
 }
 
 int main()
