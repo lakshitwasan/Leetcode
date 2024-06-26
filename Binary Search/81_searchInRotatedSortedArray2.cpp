@@ -22,6 +22,7 @@ bool search(vector<int> arr, int target)
         {
             low = low + 1;
             high = high - 1;
+            continue;
         }
 
         if (arr[low] <= arr[mid])
