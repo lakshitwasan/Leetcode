@@ -32,6 +32,8 @@ bool bouquetsPossible(vector<int> arr, int day, int m, int k)
 
 int bouquets_Linear(vector<int> arr, int m, int k)
 {
+    // TIME COMPLEXITY : O( (MAX[ARR] - MIN[ARR] + 1) * N )
+
     int n = arr.size();
 
     long long val = m * k;
@@ -63,6 +65,9 @@ int bouquets_Linear(vector<int> arr, int m, int k)
 
 int bouquets_BS(vector<int> arr, int m, int k)
 {
+
+    // TIME COMPLEXITY : O( LOG(MAX[ARR] - MIN[ARR] + 1) * N )
+
     int n = arr.size();
 
     long long val = m * k;
