@@ -25,6 +25,9 @@ int kthMissingNumber_Linear(vector<int> arr, int k)
 
 int kthMissingNumber_BS(vector<int> arr, int k)
 {
+
+    // NO IDEA HOW BUT SOMEDAY
+
     int n = arr.size();
 
     int low = 0;
