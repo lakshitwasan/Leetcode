@@ -83,8 +83,8 @@ int main()
     int n = 3;
     int m = 5;
 
-    int ans = rowWithMax1_Linear(arr, n, m);
-    // int ans = rowWithMax1_BS(arr, n, m);
+    // int ans = rowWithMax1_Linear(arr, n, m);
+    int ans = rowWithMax1_BS(arr, n, m);
 
     cout << ans;
 
