@@ -12,13 +12,14 @@ public:
     {
         front = -1;
         rear = -1;
-        arr = new int[16];
+        maxSize = 16;
+        arr = new int[maxSize];
         currSize = 0;
     }
 
     Queue(int maxSize)
     {
-        (*this).maxSize = maxSize;
+        this->maxSize = maxSize;
         arr = new int[maxSize];
         front = -1;
         rear = -1;
@@ -30,7 +31,7 @@ public:
         if (currSize == maxSize)
         {
             cout << "The queue is full" << endl;
-            exit(1);
+            return;
         }
 
         if (rear == -1)
@@ -52,11 +53,11 @@ public:
     {
         if (currSize == 0)
         {
-            cout << "The Queue is empty" << endl;
+            cout << "The queue is empty" << endl;
             return -1;
         }
         int popped = arr[front];
-        if (currSize == -1)
+        if (currSize == 1)
         {
             front = -1;
             rear = -1;
@@ -75,7 +76,7 @@ public:
         if (front == -1)
         {
             cout << "The queue is empty" << endl;
-            exit(1);
+            return -1;
         }
         return arr[front];
     }
@@ -94,11 +95,16 @@ int main()
     q.push(14);
     q.push(24);
     q.push(34);
-    cout << "The peek of the queue before deleting any element " << q.top() << endl;
-    cout << "The size of the queue before deletion " << q.size() << endl;
-    cout << "The first element to be deleted " << q.pop() << endl;
-    cout << "The peek of the queue after deleting an element " << q.top() << endl;
-    cout << "The size of the queue after deleting an element " << q.size() << endl;
+    cout << "Element Delete: " << q.pop() << endl;
+    cout << "Element Delete: " << q.pop() << endl;
+    cout << "Element Delete: " << q.pop() << endl;
+    cout << "Element Delete: " << q.pop() << endl;
+    cout << "Element Delete: " << q.pop() << endl;
+    cout << "The peek of the queue before deleting any element: " << q.top() << endl;
+    cout << "The size of the queue before deletion: " << q.size() << endl;
+    cout << "The first element to be deleted: " << q.pop() << endl;
+    cout << "The peek of the queue after deleting an element: " << q.top() << endl;
+    cout << "The size of the queue after deleting an element: " << q.size() << endl;
 
     return 0;
 }
