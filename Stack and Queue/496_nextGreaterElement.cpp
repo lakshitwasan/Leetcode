@@ -6,6 +6,8 @@ vector<int> nextGreaterElement(vector<int> arr1, vector<int> arr2)
 
     // TIME COMPLEXITY : O(N + M) & SPACE COMPLEXITY: O(2N [STACK AND MAP] + M [NGE VECTOR])
 
+    // Next greater element with two arrays and no circular array
+
     int n = arr2.size();
     vector<int> nge;
     stack<int> st;
