@@ -22,7 +22,7 @@ string postfixToInfix(string s)
             st.pop();
             // string temp = '(' + left + c + right + ')';
             // st.push(temp);
-            // st.push('(' + left + c + right + ')'); THE ABOVE CODE IS GIVING TLE BECAUSE A NEW STRING IS BEING CREATED JUST TO PUSH
+            st.push('(' + left + c + right + ')'); // THE ABOVE CODE IS GIVING TLE BECAUSE A NEW STRING IS BEING CREATED JUST TO PUSH
         }
     }
     return st.top();
@@ -33,6 +33,5 @@ int main()
     string exp = "ab+ef/*";
     cout << "Postfix expression: " << exp << endl;
     cout << "Infix expression: " << postfixToInfix(exp) << endl;
-    return 0;
     return 0;
 }
