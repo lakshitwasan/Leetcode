@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int precedence(char c)
+int precendence(char c)
 {
     if (c == '^')
     {
@@ -21,16 +21,17 @@ int precedence(char c)
     }
 }
 
-void infixToPostfix(string s)
+string infixToPostfix(string s)
 {
     stack<char> st;
     string result;
+    int n = s.length();
 
-    for (int i = 0; i < s.length(); i++)
+    for (int i = 0; i < n; i++)
     {
         char c = s[i];
 
-        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+        if (isalpha(c) || isdigit(c))
         {
             result += c;
         }
@@ -49,7 +50,7 @@ void infixToPostfix(string s)
         }
         else
         {
-            while (!st.empty() && precedence(c) <= precedence(st.top()))
+            while (!st.empty() && precendence(c) <= precendence(st.top()))
             {
                 result += st.top();
                 st.pop();
@@ -57,18 +58,46 @@ void infixToPostfix(string s)
             st.push(c);
         }
     }
+
     while (!st.empty())
     {
         result += st.top();
         st.pop();
     }
-    cout << "Postfix expression: " << result << endl;
+
+    return result;
+}
+
+string infixToPrefix(string s)
+{
+    int n = s.length();
+
+    reverse(s.begin(), s.end());
+
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '(')
+        {
+            s[i] = ')';
+        }
+        else if (s[i] == ')')
+        {
+            s[i] = '(';
+        }
+    }
+
+    string s2 = infixToPostfix(s);
+
+    reverse(s2.begin(), s2.end());
+
+    return s2;
 }
 
 int main()
 {
-    string exp = "(p+q)*(m-n)";
+    string exp = "(A+B)*C-D+F";
     cout << "Infix expression: " << exp << endl;
-    infixToPostfix(exp);
+    cout << "Prefix expression: " << infixToPrefix(exp) << endl;
+
     return 0;
 }
