@@ -3,6 +3,9 @@ using namespace std;
 
 void duplicateZeroes(vector<int> &arr)
 {
+
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(1)
+
     int i = 0;
     int n = arr.size();
     while (i < n)

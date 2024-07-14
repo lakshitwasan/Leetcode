@@ -1,24 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//  THIS ISN'T COMPLETE AND IS WRONG
-
 int thirdMax(vector<int> arr)
 {
     int n = arr.size();
 
-    if (arr.size() == 1)
-    { // when size of Array is 1
-        return arr[0];
-    }
-    if (arr.size() == 2)
-    { // When size of array is 2
-        return max(arr[0], arr[1]);
-    }
-
-    int firstMax = INT32_MIN;
-    int secondMax = INT32_MIN;
-    int thirdMax = INT32_MIN;
+    long long firstMax = LONG_LONG_MIN;
+    long long secondMax = LONG_LONG_MIN;
+    long long thirdMax = LONG_LONG_MIN;
 
     for (int i = 0; i < n; i++)
     {
@@ -37,6 +26,15 @@ int thirdMax(vector<int> arr)
         {
             thirdMax = arr[i];
         }
+    }
+
+    if (thirdMax == LONG_LONG_MIN)
+    {
+        return firstMax;
+    }
+    else if (secondMax == LONG_LONG_MIN)
+    {
+        return firstMax;
     }
 
     return thirdMax;
