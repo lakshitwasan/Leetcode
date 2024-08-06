@@ -21,6 +21,25 @@ int findDuplicate_map(vector<int> arr)
     }
 }
 
+int findDuplicates_negativeFlag(vector<int> arr)
+{
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(1)
+
+    int n = arr.size();
+
+    for (int i = 0; i < n; i++)
+    {
+        int ans = abs(arr[i]) - 1;
+        if (arr[ans] < 0)
+        {
+            return abs(arr[i]);
+        }
+        arr[ans] = -arr[ans];
+    }
+
+    return -1;
+}
+
 int main()
 {
 
