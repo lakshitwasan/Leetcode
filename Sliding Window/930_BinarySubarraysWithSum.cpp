@@ -28,6 +28,27 @@ int numSubarraysWithSum_BF(vector<int> arr, int goal)
     return count;
 }
 
+int numSubarrayWithSum_prefixSum(vector<int> arr, int goal)
+{
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
+
+    unordered_map<int, int> ump;
+    ump[0] = 1;
+    int sum = 0;
+    int count = 0;
+
+    for (int it : arr)
+    {
+        sum += it;
+        if (ump.find(sum - goal) != ump.end())
+        {
+            count += ump[sum - goal];
+        }
+        ump[sum]++;
+    }
+    return count;
+}
+
 int numSubarrayWithSum_SW_helper(vector<int> arr, int goal)
 {
     // TIME COMPLEXITY: O(2N) [WORST]
@@ -73,10 +94,12 @@ int main()
     int goal = 2;
 
     int ans1 = numSubarraysWithSum_BF(arr, goal);
-    int ans2 = numSubarrayWithSum_SW(arr, goal);
+    int ans2 = numSubarrayWithSum_prefixSum(arr, goal);
+    int ans3 = numSubarrayWithSum_SW(arr, goal);
 
     cout << "Ans1: " << ans1 << endl;
     cout << "Ans2: " << ans2 << endl;
+    cout << "Ans3: " << ans3 << endl;
 
     return 0;
 }
