@@ -112,6 +112,16 @@ int characterReplacement_Best(string s, int k)
 
 int main()
 {
+    string s = "ABAB";
+    int k = 2;
+
+    int ans1 = characterReplacement_BF(s, k);
+    int ans2 = characterReplacement_Better(s, k);
+    int ans3 = characterReplacement_Best(s, k);
+
+    cout << " Ans1: " << ans1 << endl;
+    cout << " Ans2: " << ans2 << endl;
+    cout << " Ans3: " << ans3 << endl;
 
     return 0;
 }
