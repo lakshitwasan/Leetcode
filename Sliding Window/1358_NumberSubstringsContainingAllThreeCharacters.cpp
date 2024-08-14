@@ -51,26 +51,25 @@ int numberOfSubstrings_betterBF(string s)
     return count;
 }
 
-int numberOfSubstrings_betterBF(string s)
+int numberOfSubstrings_SW(string s)
 {
+
+    // TIME COMPLEXITY: O(2N) & SPACE COMPLEXITY: O(N)
+
     int n = s.size();
     int count = 0;
     int left = 0;
     int right = 0;
 
-    set<char> st;
+    unordered_map<char, int> ump;
 
     while (right < n)
     {
-        // st.clear();
-
-        // abcabc
-
-        st.insert(s[right]);
-        while (st.size() == 3)
+        ump[s[right]]++;
+        while (ump['a'] > 0 && ump['b'] > 0 && ump['c'] > 0)
         {
             count = count + n - right;
-            st.erase(left);
+            ump[s[left]]--;
             left++;
         }
         right++;
@@ -79,8 +78,41 @@ int numberOfSubstrings_betterBF(string s)
     return count;
 }
 
+int numberOfSubstrings_best(string s)
+{
+
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
+
+    vector<int> lastSeen(3, -1);
+    int n = s.size();
+    int count = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        lastSeen[s[i] - 'a'] = i;
+
+        if (lastSeen[0] != -1 && lastSeen[1] != -1 && lastSeen[2] != -1)
+        {
+            count = count + (1 + min({lastSeen[0], lastSeen[1], lastSeen[2]}));
+        }
+    }
+
+    return count;
+}
+
 int main()
 {
 
+    string s = "abcabc";
+
+    int resultBF = numberOfSubstrings_BF(s);
+    int resultBetterBF = numberOfSubstrings_betterBF(s);
+    int resultSW = numberOfSubstrings_SW(s);
+    int resultBest = numberOfSubstrings_best(s);
+
+    cout << "Number of substrings (Brute Force): " << resultBF << endl;
+    cout << "Number of substrings (Better Brute Force): " << resultBetterBF << endl;
+    cout << "Number of substrings (Sliding Window): " << resultSW << endl;
+    cout << "Number of substrings (Optimal): " << resultBest << endl;
     return 0;
 }
