@@ -3,6 +3,9 @@ using namespace std;
 
 void subsequence(int ind, vector<int> &ds, vector<int> arr)
 {
+
+    // TIME COMEPLXITY: O(2^N x N) & SPACE COMPLEXITY: O(N)
+
     int n = arr.size();
 
     if (ind == n)
