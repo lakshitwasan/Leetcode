@@ -79,39 +79,40 @@ Node *swapPairs_variable(Node *head)
     return dummy->next;
 }
 
-Node *swapPairs_variable(Node *head)
+Node *swapPairs_recursion(Node *head)
 {
     if (head == NULL || head->next == NULL)
     {
         return head;
     }
 
-    Node *dummy = new Node(-1, head);
-    Node *temp = dummy;
-
-    Node *back = temp->next;
+    Node *back = head;
     Node *front = back->next;
 
-    back->next = front->next;
+    back->next = swapPairs_recursion(front->next);
     front->next = back;
-    temp->next = front;
 
-    temp = back;
-
-    return dummy->next;
+    return front;
 }
 
 int main()
 {
-
     vector<int> arr = {1, 2, 3, 4, 5};
 
     Node *head = arr2LL(arr);
 
+    cout << "Original list: ";
     print(head);
 
-    head = swapPairs_variable(head);
+    Node *headRecursion = swapPairs_recursion(head);
+    cout << "List after swapPairs_recursion: ";
+    print(headRecursion);
 
-    print(head);
+    head = arr2LL(arr);
+
+    Node *headVariable = swapPairs_variable(head);
+    cout << "List after swapPairs_variable: ";
+    print(headVariable);
+
     return 0;
 }
