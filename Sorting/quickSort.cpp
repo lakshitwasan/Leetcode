@@ -3,6 +3,9 @@ using namespace std;
 
 int QS_helper(vector<int> &arr, int low, int high)
 {
+
+    // TIME COMPLEXITY: O(NLOGN) & SPACE COMEPLXITY: O(1)
+
     int pivot = arr[low];
     int i = low;
     int j = high;
