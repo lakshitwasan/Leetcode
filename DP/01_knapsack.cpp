@@ -59,17 +59,17 @@ int knapsack_DP(int n, vector<int> &weights, vector<int> &prices, int w)
     }
 
     // RECURSION CALLS
-    for (int i = 0; i < n + 1; i++)
+    for (int i = 1; i < n + 1; i++)
     {
-        for (int j = 0; j < w + 1; j++)
+        for (int j = 1; j < w + 1; j++)
         {
-            if (weights[i] > j)
+            if (weights[i - 1] > j)
             {
                 dp2[i][j] = dp2[i - 1][j];
             }
             else
             {
-                dp2[i][j] = max(prices[i] + dp2[i - 1][j - weights[i - 1]], dp2[i - 1][j]);
+                dp2[i][j] = max(prices[i - 1] + dp2[i - 1][j - weights[i - 1]], dp2[i - 1][j]);
             }
         }
     }
@@ -90,7 +90,7 @@ int main()
 
     int max_profit1 = knapsack_recursion(n, weight, price, W);
     int max_profit2 = knapsack_memoized(n, weight, price, W);
-    int max_profit3 = knapsack_memoized(n, weight, price, W);
+    int max_profit3 = knapsack_DP(n, weight, price, W);
     cout << "The maximum profit 1 that can be obtained is: " << max_profit1 << endl;
     cout << "The maximum profit 2 that can be obtained is: " << max_profit2 << endl;
     cout << "The maximum profit 3 that can be obtained is: " << max_profit3 << endl;
