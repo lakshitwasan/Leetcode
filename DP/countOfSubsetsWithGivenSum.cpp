@@ -28,7 +28,7 @@ int countOfSubsetsWithGivenSum(vector<int> arr, int sum)
 
             if (j == 0)
             {
-                dp[i][j] = pow(2, count);
+                dp[i][j] = pow(2, count); // IF NO ZEROES EXIST THEN THE ANSWER SHOPULD BE 1 AS NULL POINTER WILL BE THE ONLY CASE OTHER THEN THAT IF ZEROS ARER THERE THEN IT INCREASEs TO 2 ^ NUMBER OF ZEROES
             }
         }
     }
