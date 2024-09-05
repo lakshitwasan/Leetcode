@@ -28,14 +28,14 @@ int countOfSubsetsWithGivenSum(vector<int> arr, int sum)
 
             if (j == 0)
             {
-                dp[i][j] = pow(2, count); // IF NO ZEROES EXIST THEN THE ANSWER SHOPULD BE 1 AS NULL POINTER WILL BE THE ONLY CASE OTHER THEN THAT IF ZEROS ARER THERE THEN IT INCREASEs TO 2 ^ NUMBER OF ZEROES
+                dp[i][j] = 1;
             }
         }
     }
 
     for (int i = 1; i < n + 1; i++)
     {
-        for (int j = 1; j < sum + 1; j++)
+        for (int j = 0; j < sum + 1; j++)
         {
             if (arr[i - 1] > j)
             {

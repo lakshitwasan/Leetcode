@@ -28,7 +28,7 @@ int countSubsetSum(vector<int> &arr, int sum)
 
     for (int i = 1; i < n + 1; i++)
     {
-        for (int j = 1; j < sum + 1; j++)
+        for (int j = 0; j < sum + 1; j++)
         {
             if (arr[i - 1] > j)
             {
@@ -50,6 +50,11 @@ int countTheSubsetWithDifference(vector<int> &arr, int diff)
     for (int i = 0; i < arr.size(); i++)
     {
         sum += arr[i];
+    }
+
+    if (abs(diff) > sum || (sum + diff) % 2 != 0)
+    {
+        return 0;
     }
 
     int s1 = (diff + sum) / 2;
