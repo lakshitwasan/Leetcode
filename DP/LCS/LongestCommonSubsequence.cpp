@@ -83,8 +83,8 @@ int LCS_TopDown(vector<char> x, vector<char> y, int n, int m)
 
 int main()
 {
-    vector<char> x = {'A', 'B', 'C', 'D', 'G', 'H'};
-    vector<char> y = {'A', 'E', 'D', 'F', 'H', 'R'};
+    vector<char> x = {'A', 'B', 'C', 'D'};
+    vector<char> y = {'A', 'B', 'D', 'E', 'C'};
 
     int n = x.size();
     int m = y.size();
