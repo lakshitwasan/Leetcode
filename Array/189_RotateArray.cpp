@@ -62,9 +62,9 @@ void Reverse(vector<int> &arr, int start, int end)
 
 void RotateLeft(vector<int> &arr, int n, int k)
 {
-    Reverse(arr, n - k - 1, n);
-    Reverse(arr, 0, k);
-    Reverse(arr, 0, n);
+    Reverse(arr, 0, k-1);
+    Reverse(arr, k, n-1);
+    Reverse(arr, 0, n-1);
 }
 
 void RotateRight(vector<int> &arr, int n, int k)
@@ -85,7 +85,8 @@ int main()
     // rightShift(arr,n, k);
     // leftShift(arr, n, k);
 
-    RotateRight(arr, n, k);
+    // RotateRight(arr, n, k);
+    RotateLeft(arr, n,k);
 
     for (int i = 0; i < arr.size(); i++)
     {
