@@ -1,0 +1,105 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int searchNoDuplicate(vector<int> &arr, int target)
+{
+    int n = arr.size();
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target)
+        {
+            return mid;
+        }
+        else if (arr[low] <= arr[mid])
+        {
+            if (arr[low] <= target && target <= arr[mid])
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+        else if (arr[mid] <= arr[high])
+        {
+            if (arr[mid] <= target && target <= arr[high])
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1;
+            }
+        }
+    }
+    return -1;
+}
+
+bool searchDuplicate(vector<int> &arr, int target)
+{
+    int n = arr.size();
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == target)
+        {
+            return true;
+        }
+
+        if (arr[low] == arr[mid] && arr[mid] == arr[high])
+        {
+            low = low + 1;
+            high = high - 1;
+            continue;
+        }
+
+        if (arr[low] <= arr[mid])
+        {
+            if (arr[low] <= target && target <= arr[mid])
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+        else if (arr[mid] <= arr[high])
+        {
+            if (arr[mid] <= target && target <= arr[high])
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1;
+            }
+        }
+    }
+    return false;
+}
+
+int main()
+{
+
+    vector<int> arr1 = {3, 4, 5, 6, 1, 2};
+    vector<int> arr2 = {3, 4, 5, 6, 1, 2, 3, 3, 3, 3};
+
+    int target = 3;
+
+    int ans1 = searchNoDuplicate(arr1, target);
+    cout << "Without duplicates: " << ans1 << endl;
+    bool ans2 = searchDuplicate(arr2, target);
+    cout << "With duplicates: " << (ans2 ? "Found" : "Not Found") << endl;
+
+    return 0;
+}
