@@ -13,26 +13,17 @@ struct Node
         left = nullptr;
         right = nullptr;
     }
-
-    Node(int val, Node *l, Node *r)
-    {
-        data = val;
-        left = l;
-        right = r;
-    }
 };
 
-void preOrder(Node *root, vector<int> &arr)
+void inOrder(Node *root, vector<int> &arr)
 {
-    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
-
     if (root == NULL)
     {
         return;
     }
+    inOrder(root->left, arr);
     arr.push_back(root->data);
-    preOrder(root->left, arr);
-    preOrder(root->right, arr);
+    inOrder(root->right, arr);
 }
 
 int main()
@@ -48,9 +39,9 @@ int main()
     root->right->right->left = new Node(8);
 
     vector<int> result;
-    preOrder(root, result);
+    inOrder(root, result);
 
-    cout << "Preorder Traversal: ";
+    cout << "Inorder Traversal: ";
     for (int val : result)
     {
         cout << val << " ";
