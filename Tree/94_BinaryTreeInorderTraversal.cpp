@@ -17,6 +17,8 @@ struct Node
 
 void inOrder(Node *root, vector<int> &arr)
 {
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
+
     if (root == NULL)
     {
         return;
@@ -24,6 +26,39 @@ void inOrder(Node *root, vector<int> &arr)
     inOrder(root->left, arr);
     arr.push_back(root->data);
     inOrder(root->right, arr);
+}
+
+vector<int> inOrder_stack(Node *root)
+{
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N) [STACK IS USED AND VECTOR IS INITIATED TO STORE THE ANSWER]
+
+    vector<int> inorder;
+    if (root == NULL)
+    {
+        return inorder;
+    }
+    stack<Node *> st;
+    Node *node = root;
+    while (true)
+    {
+        if (node !=NULL)
+        {
+            st.push(node);
+            node = node ->left;
+        }
+        else
+        {
+            if (st.empty() == true)
+            {
+                break;
+            }
+            node = st.top();
+            st.pop();
+            inorder.push_back(node -> data);
+            node = node->right;
+        }
+    }
+    return inorder;
 }
 
 int main()
@@ -39,7 +74,8 @@ int main()
     root->right->right->left = new Node(8);
 
     vector<int> result;
-    inOrder(root, result);
+    // inOrder(root, result);
+    result = inOrder_stack(root);
 
     cout << "Inorder Traversal: ";
     for (int val : result)
