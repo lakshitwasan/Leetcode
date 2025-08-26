@@ -35,6 +35,38 @@ void preOrder(Node *root, vector<int> &arr)
     preOrder(root->right, arr);
 }
 
+vector<int> preOrder_stack(Node *root)
+{
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N) [STACK IS USED AND VECTOR IS INITIATED TO STORE THE ANSWER]
+
+    vector<int> ans;
+    if (root == NULL)
+    {
+        return ans;
+    }
+    stack<Node *> s;
+    s.push(root);
+    while (!s.empty())
+    {
+        int size = s.size();
+        for (int i = 0; i < size; i++)
+        {
+            Node *node = s.top();
+            s.pop();
+            if (node->right != nullptr)
+            {
+                s.push(node->right);
+            }
+            if (node->left != nullptr)
+            {
+                s.push(node->left);
+            }
+            ans.push_back(node->data);
+        }
+    }
+    return ans;
+}
+
 int main()
 {
     Node *root = new Node(4);
@@ -48,7 +80,8 @@ int main()
     root->right->right->left = new Node(8);
 
     vector<int> result;
-    preOrder(root, result);
+    // preOrder(root, result);
+    result = preOrder_stack(root);
 
     cout << "Preorder Traversal: ";
     for (int val : result)
