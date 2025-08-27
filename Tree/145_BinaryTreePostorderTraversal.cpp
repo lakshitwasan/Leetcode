@@ -17,6 +17,8 @@ struct Node
 
 void postorder(Node *root, vector<int> &arr)
 {
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
+
     if (root == NULL)
     {
         return;
@@ -24,6 +26,46 @@ void postorder(Node *root, vector<int> &arr)
     postorder(root->left, arr);
     postorder(root->right, arr);
     arr.push_back(root->data);
+}
+
+vector<int> postorder_2stack(Node *root)
+{
+    // TIME COMPLEXITY: O(2N) & SPACE COMPLEXITY: O(2N)
+
+    vector<int> preorder;
+    if (root == NULL)
+    {
+        return preorder;
+    }
+    stack<Node *> st1;
+    stack<Node *> st2;
+    st1.push(root);
+
+    while (!st1.empty())
+    {
+        Node *node = st1.top();
+        st1.pop();
+        st2.push(node);
+        if (node->left != nullptr)
+        {
+            st1.push(node->left);
+        }
+        if (node->right != nullptr)
+        {
+            st1.push(node->right);
+        }
+    }
+
+    int size = st2.size();
+
+    for (int i = 0; i < size; i++)
+    {
+        Node *node = st2.top();
+        st2.pop();
+        preorder.push_back(node->data);
+    }
+
+    return preorder;
 }
 
 int main()
@@ -40,7 +82,8 @@ int main()
     root->right->right->left = new Node(8);
 
     vector<int> result;
-    postorder(root, result);
+    // postorder(root, result);
+    result = postorder_2stack(root);
 
     cout << "Postorder Traversal: ";
     for (int val : result)
