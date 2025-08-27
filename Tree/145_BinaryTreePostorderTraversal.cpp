@@ -32,10 +32,10 @@ vector<int> postorder_2stack(Node *root)
 {
     // TIME COMPLEXITY: O(2N) & SPACE COMPLEXITY: O(2N)
 
-    vector<int> preorder;
+    vector<int> postorder;
     if (root == NULL)
     {
-        return preorder;
+        return postorder;
     }
     stack<Node *> st1;
     stack<Node *> st2;
@@ -62,10 +62,90 @@ vector<int> postorder_2stack(Node *root)
     {
         Node *node = st2.top();
         st2.pop();
-        preorder.push_back(node->data);
+        postorder.push_back(node->data);
     }
 
-    return preorder;
+    return postorder;
+}
+
+vector<int> postorder_1stack_vector(Node *root)
+{
+    // TIME COMPLEXITY: O(2N) & SPACE COMPLEXITY: O(2N)
+
+    vector<int> postorder;
+    if (root == NULL)
+    {
+        return postorder;
+    }
+    stack<Node *> st1;
+    st1.push(root);
+
+    while (!st1.empty())
+    {
+        Node *node = st1.top();
+        st1.pop();
+        postorder.push_back(node->data);
+        if (node->left != nullptr)
+        {
+            st1.push(node->left);
+        }
+        if (node->right != nullptr)
+        {
+            st1.push(node->right);
+        }
+    }
+
+    int n = postorder.size();
+    for (int i = 0; i < n / 2; i++)
+    {
+        swap(postorder[i], postorder[n - i - 1]);
+    }
+
+    return postorder;
+}
+
+vector<int> postorder_1stack(Node *root)
+{
+    // TIME COMPLEXITY: O(2N) & SPACE COMPLEXITY: O(N)
+
+    vector<int> postorder;
+    if (root == NULL)
+    {
+        return postorder;
+    }
+    stack<Node *> st;
+    Node *node = root;
+
+    while (node != NULL || !st.empty())
+    {
+        if (node != NULL)
+        {
+            st.push(node);
+            node = node->left;
+        }
+        else
+        {
+            Node *temp = st.top()->right;
+            if (temp == NULL)
+            {
+                temp = st.top();
+                st.pop();
+                postorder.push_back(temp->data);
+                while (!st.empty() && temp == st.top()->right)
+                {
+                    temp = st.top();
+                    st.pop();
+                    postorder.push_back(temp->data);
+                }
+            }
+            else
+            {
+                node = temp;
+            }
+        }
+    }
+
+    return postorder;
 }
 
 int main()
@@ -83,7 +163,9 @@ int main()
 
     vector<int> result;
     // postorder(root, result);
-    result = postorder_2stack(root);
+    result = postorder_1stack(root);
+    // result = postorder_1stack_vector(root);
+    // result = postorder_2stack(root);
 
     cout << "Postorder Traversal: ";
     for (int val : result)
