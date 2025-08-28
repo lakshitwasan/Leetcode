@@ -15,7 +15,20 @@ struct Node
     }
 };
 
-int maxDepth(Node *root)
+int maxDepth_recursion(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int lh = maxDepth_recursion(root->left);
+    int rh = maxDepth_recursion(root->right);
+
+    return 1 + max(lh, rh);
+}
+
+int maxDepth_queue(Node *root)
 {
     // TIME COMPLEXITY : O(N) & SPACE COMPLEXITY: O(N) [WORST CASE LAST LEVEL CAN HAVE N/2 NODES IF IT IS A PERFECT BINARY TREE]
 
@@ -59,7 +72,8 @@ int main()
     root->right->right = new Node(6);
     root->right->right->left = new Node(8);
 
-    int result = maxDepth(root);
+    int result = maxDepth_recursion(root);
+    // int result = maxDepth_queue(root);
 
     cout << "Max Depth: " << result;
 
