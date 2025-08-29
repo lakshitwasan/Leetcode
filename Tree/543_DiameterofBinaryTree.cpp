@@ -17,15 +17,44 @@ struct Node
 
 int diameter = 0;
 
+int height(Node * root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int lh = height(root->left);
+    int rh = height(root->right);
+
+    return 1 + max(lh, rh);
+}
+
 int diameterOfTree_BF(Node *root)
 {
     if (root == NULL)
     {
         return 0;
     }
+    
+    int lh = height(root->left);
+    int rh = height(root->right);
+    int ld = diameterOfTree_BF(root->left);
+    int rd = diameterOfTree_BF(root->right);
 
-    int leftHeight = diameterOfTree_BF(root->left);
-    int rightHeight = diameterOfTree_BF(root->right);
+    return 1 + max(lh+rh, max(ld, rd));
+}
+
+int diameterOfTree_Optimal(Node *root)
+{
+    //  TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(H);
+
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int leftHeight = diameterOfTree_Optimal(root->left);
+    int rightHeight = diameterOfTree_Optimal(root->right);
 
     diameter = max(diameter, leftHeight + rightHeight); // LH + RH IS USED BECAUSE THE NUMBER OF EDGES IS ASKED
     // diameter = max(diameter, 1 + leftHeight + rightHeight); // LH + RH + 1 IS USED ONLY WHEN THE NUMBER OF NODES ARE ASKED
