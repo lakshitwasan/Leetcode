@@ -31,6 +31,9 @@ int height(Node * root)
 
 int diameterOfTree_BF(Node *root)
 {
+
+    //  TIME COMPLEXITY: O(N^2) & SPACE COMPLEXITY: O(H);
+
     if (root == NULL)
     {
         return 0;
