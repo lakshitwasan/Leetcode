@@ -17,6 +17,8 @@ struct Node
 
 vector<vector<int>> verticalOrder(Node *root)
 {
+    // TIME COMPLEXITY: 0(N * LOGN * LOGN * LOG) => O(NLOGN) & SPACE COMPLEXITY: O(N + N/2) => O(NS)
+
     map<int, map<int, multiset<int>>> node_map;
     queue<pair<Node *, pair<int, int>>> qu;
 
