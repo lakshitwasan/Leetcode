@@ -15,7 +15,7 @@ bool sameTree(Node *root1, Node *root2)
         return true;
     if (root1 == NULL || root2 == NULL)
         return false;
-    return (root1->data == root2->data) && sameTree(root1->left, root2->left) && sameTree(root1->right, root2->right);
+    return (root1 -> data == root2->data) && sameTree(root1->left, root2->left) && sameTree(root1->right, root2->right);
 }
 
 int main()
