@@ -17,6 +17,8 @@ struct Node
 
 void changeTree(Node *root)
 {
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
+
     if (!root)
     {
         return;
