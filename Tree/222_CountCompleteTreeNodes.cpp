@@ -29,6 +29,8 @@ void inorder(Node *root, int &count)
 
 int countNode_BF(Node *root)
 {
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(LOGN)
+
     if (!root)
     {
         return 0;
@@ -73,6 +75,8 @@ int rightHeight(Node *node)
 
 int countNode_Optimal(Node *root)
 {
+    // TIME COMPLEXITY: O(LOGN x LOGN) & SPACE COMPLEXITY: O(LOGN)
+
     if (!root)
     {
         return 0;
