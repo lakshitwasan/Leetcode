@@ -35,6 +35,7 @@ Node *BuildTreeHelper(vector<int> preorder, int preStart, int preEnd, vector<int
 
 Node *BuildTree(vector<int> preorder, vector<int> inorder)
 {
+    
     map<int, int> inMap;
     for (int i = 0; i < inorder.size(); i++)
     {
