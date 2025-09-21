@@ -35,6 +35,8 @@ Node *BuildTreeHelper(vector<int> inOrder, int inStart, int inEnd, vector<int> p
 
 Node *BuildTree(vector<int> inOrder, vector<int> postOrder)
 {
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
+
     map<int, int> inMap;
     for (int i = 0; i < inOrder.size(); i++)
     {
