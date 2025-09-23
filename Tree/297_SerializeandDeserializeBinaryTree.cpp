@@ -17,6 +17,9 @@ struct Node
 
 string serialize(Node *root)
 {
+
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
+
     if (!root)
     {
         return "";
@@ -46,6 +49,9 @@ string serialize(Node *root)
 
 Node *deserialize(string data)
 {
+
+    // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
+
     if (data.empty())
     {
         return NULL;
