@@ -41,10 +41,10 @@ vector<int> inOrder_stack(Node *root)
     Node *node = root;
     while (true)
     {
-        if (node !=NULL)
+        if (node != NULL)
         {
             st.push(node);
-            node = node ->left;
+            node = node->left;
         }
         else
         {
@@ -54,8 +54,42 @@ vector<int> inOrder_stack(Node *root)
             }
             node = st.top();
             st.pop();
-            inorder.push_back(node -> data);
+            inorder.push_back(node->data);
             node = node->right;
+        }
+    }
+    return inorder;
+}
+
+vector<int> Inorder_Morris(Node *root)
+{
+    vector<int> inorder;
+    Node *cur = root;
+    while (cur != NULL)
+    {
+        if (cur->left == NULL)
+        {
+            inorder.push_back(cur->data);
+            cur = cur->right;
+        }
+        else
+        {
+            Node *prev = cur->left;
+            while (prev->right && prev->right != cur)
+            {
+                prev = prev->right;
+            }
+            if (prev->right == NULL)
+            {
+                prev->right = cur;
+                cur = cur->left;
+            }
+            else
+            {
+                prev->right = NULL;
+                inorder.push_back(cur->data);
+                cur = cur->right;
+            }
         }
     }
     return inorder;
@@ -75,7 +109,8 @@ int main()
 
     vector<int> result;
     // inOrder(root, result);
-    result = inOrder_stack(root);
+    // result = inOrder_stack(root);
+    result = Inorder_Morris(root);
 
     cout << "Inorder Traversal: ";
     for (int val : result)
