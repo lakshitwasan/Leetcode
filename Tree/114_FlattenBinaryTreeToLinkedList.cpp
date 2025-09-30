@@ -26,7 +26,6 @@ Node *prevNode = NULL;
 
 void flatten_BF(Node *node)
 {
-
     // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
 
     if (!node)
@@ -42,7 +41,6 @@ void flatten_BF(Node *node)
 
 void flatten_BF_Stack(Node *node)
 {
-
     // TIME COMPLEXITY: O(N) & SPACE COMPLEXITY: O(N)
     if (!node)
         return;
