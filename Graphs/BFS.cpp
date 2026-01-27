@@ -4,6 +4,9 @@ using namespace std;
 
 vector<int> BFS(int V, vector<int> adj[])
 {
+
+    // Time complexity: 0(N) + O(2E) & Space Complexity: 0(N)
+
     int vis[V] = {0};
     vis[0] =1;
     queue<int> q;
