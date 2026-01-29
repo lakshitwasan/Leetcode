@@ -15,6 +15,9 @@ void dfs(int node, vector<int> adj[], vector<int> &vis)
 
 int NoOfProvince(vector<vector<int>> &isConnected)
 {
+
+    // Time Complexity: O(N) + O(N) + O(2E) && Space Complexity: O(N)
+
     int V = isConnected.size();
     vector<int> adj[V];
 
